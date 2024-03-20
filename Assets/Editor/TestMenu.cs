@@ -17,6 +17,15 @@ public class TestMenu
 
     }
 
+    [MenuItem("Tools/LearnBuildContext", false, 1)]
+    private static void LearnBuildContext()
+    {
+        Debug.Log("Start LearnBuildContext...");
+        var context = new LearnBuildContext();
+        context.Test();
+        Debug.Log("End LearnBuildContext...");
+    }
+
     public static bool BuildPipelineBuildAssetBundles(string outputPath, bool forceRebuild, bool useChunkBasedCompression, BuildTarget buildTarget)
     {
         var options = BuildAssetBundleOptions.None;
