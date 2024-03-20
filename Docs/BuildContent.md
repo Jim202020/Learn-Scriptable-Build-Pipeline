@@ -25,3 +25,6 @@ static class ExtensionMethods
 }
 ```
 BundleLayout是个Dictionary，通过扩展添加了GetOrAdd方法，GetOrAdd方法的作用是如果字典中不存在指定的key，则添加一个key-value，如果存在则返回对应的value。
+
+## 主要逻辑
+遍历传进来的bundleBuilds，通过解析每个bundleBuild，以bundleBuild.assetBundleName作为key，通过bundleBuild.assetNames获得GUID数组作为value，添加到BundleLayout中。Assets和Scenes列表分别存对应类型（除场景类型外的都是Asset类似）的asset GUID。
