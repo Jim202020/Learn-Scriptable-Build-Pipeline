@@ -1,0 +1,2 @@
+## 代码设计
+BundleBuildParameters继承BuildParameters，BuildParameters包含了通用的构建参数，BundleBuildParameters新增了bundle构建的参数。通过接口隔离，使用IBundleBuildParameters，IBuildParameters可有针对性的使用相关参数。
