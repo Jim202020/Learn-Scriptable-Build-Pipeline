@@ -14,7 +14,9 @@ public class TestMenu
     [MenuItem("Tools/CompatibilityBuildPipelineBuild", false, 1)]
     private static void CompatibilityBuildPipelineBuild()
     {
-
+        var assetBundles = AssetBundleGenerator.GetPrefabsAssetBundle("Assets/Unity UI Samples/Prefabs");
+        var outputPath = "AssetBundles/Android";
+        CompatibilityBuildPipelineBuildAssetBundles(outputPath, assetBundles,true,true,BuildTarget.Android);
     }
 
     [MenuItem("Tools/LearnBuildContext", false, 1)]
@@ -40,7 +42,7 @@ public class TestMenu
         return manifest != null;
     }
 
-    public static bool CompatibilityBuildPipelineBuildAssetBundles(string outputPath, bool forceRebuild, bool useChunkBasedCompression, BuildTarget buildTarget)
+    public static bool CompatibilityBuildPipelineBuildAssetBundles(string outputPath, AssetBundleBuild[] builds, bool forceRebuild, bool useChunkBasedCompression, BuildTarget buildTarget)
     {
         var options = BuildAssetBundleOptions.None;
         if (useChunkBasedCompression)
@@ -51,7 +53,7 @@ public class TestMenu
 
         Directory.CreateDirectory(outputPath);
         // Replaced BuildPipeline.BuildAssetBundles with CompatibilityBuildPipeline.BuildAssetBundles here
-        var manifest = CompatibilityBuildPipeline.BuildAssetBundles(outputPath, options, buildTarget);
+        var manifest = CompatibilityBuildPipeline.BuildAssetBundles(outputPath, builds, options, buildTarget);
         return manifest != null;
     }
 }
