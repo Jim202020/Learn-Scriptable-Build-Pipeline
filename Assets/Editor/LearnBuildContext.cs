@@ -24,6 +24,8 @@ public class LearnBuildContext
 
     private IEnumerable<Type> WalkAssignableTypes(IContextObject contextObject)
     {
+        Debug.Log("===start WalkAssignableTypes");
+        
         var iCType = typeof(IContextObject);
         foreach (Type t in contextObject.GetType().GetInterfaces())
         {
@@ -34,6 +36,8 @@ public class LearnBuildContext
         for (var current = contextObject.GetType(); current != null; current = current.BaseType)
             if (iCType.IsAssignableFrom(current) && current != iCType)
                 yield return current;
+
+        Debug.Log("===end WalkAssignableTypes");
     }
 
     public void SetContextObject(IContextObject contextObject)

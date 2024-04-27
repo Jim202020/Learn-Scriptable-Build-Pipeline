@@ -14,7 +14,7 @@ public class TestMenu
     [MenuItem("Tools/CompatibilityBuildPipelineBuild", false, 1)]
     private static void CompatibilityBuildPipelineBuild()
     {
-        var assetBundles = AssetBundleGenerator.GetPrefabsAssetBundle("Assets/Unity UI Samples/Prefabs");
+        var assetBundles = AssetBundleGenerator.GetPrefabsAssetBundle("Assets/Unity_UI_Samples/Prefabs");
         var outputPath = "AssetBundles/Android";
         CompatibilityBuildPipelineBuildAssetBundles(outputPath, assetBundles,true,true,BuildTarget.Android);
     }
