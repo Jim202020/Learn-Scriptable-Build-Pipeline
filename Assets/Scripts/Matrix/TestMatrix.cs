@@ -53,11 +53,11 @@ public class TestMatrix : MonoBehaviour
         var mp_inverse = mp.inverse;
 
         print("localToWorldMatrix: \n" + transform.localToWorldMatrix);
-        print("======custom localToWorldMatrix:\n" + p_mr * p_ms * p_mp * mr * ms * mp);
+        print("======custom localToWorldMatrix:\n" + p_mp * p_mr * p_ms * mp * mr * ms);
 
         print("worldToLocalMatrix: \n" + transform.worldToLocalMatrix);
-        print("======inverse worldToLocalMatrix:\n" + (p_mr * p_ms * p_mp * mr * ms * mp).inverse);
-        print("======custom inverse worldToLocalMatrix:\n" + mp_inverse * ms_inverse * mr_inverse * p_mp_inverse * p_ms_inverse * p_mr_inverse);
+        print("======inverse worldToLocalMatrix:\n" + (p_mp * p_mr * p_ms * mp * mr * ms).inverse);
+        print("======custom inverse worldToLocalMatrix:\n" + ms_inverse * mr_inverse * mp_inverse * p_ms_inverse * p_mr_inverse * p_mp_inverse);
     }
 
     // Update is called once per frame
