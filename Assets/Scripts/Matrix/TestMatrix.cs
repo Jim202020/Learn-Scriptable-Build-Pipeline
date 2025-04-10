@@ -8,6 +8,8 @@ public class TestMatrix : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        print("Translate:" + Matrix4x4.Translate(new Vector3(10, 20, 30)));
+
         var go1 = AddGo1();
         AddGo2(go1);
     }
@@ -16,9 +18,9 @@ public class TestMatrix : MonoBehaviour
     {
         var go = new GameObject("go1");
         var transform = go.transform;
-        transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
         transform.rotation = Quaternion.Euler(30, 30, 30);
-        transform.position = new Vector3(0, 0, 0);
+        transform.position = new Vector3(20, 30, 40);
         return go;
     }
 
@@ -30,7 +32,7 @@ public class TestMatrix : MonoBehaviour
         transform.parent = go1.transform;
         transform.localRotation = Quaternion.Euler(20, 20, 20);
         transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        transform.localPosition = new Vector3(0, 0, 0);
+        transform.localPosition = new Vector3(10, 20, 30);
         print("localScale: " + transform.localScale);
         print("lossyScale: " + transform.lossyScale);
 
@@ -55,7 +57,7 @@ public class TestMatrix : MonoBehaviour
 
         print("worldToLocalMatrix: \n" + transform.worldToLocalMatrix);
         print("======inverse worldToLocalMatrix:\n" + (p_mr * p_ms * p_mp * mr * ms * mp).inverse);
-        print("======custom inverse worldToLocalMatrix:\n" + mr_inverse * ms_inverse * mp_inverse * p_mr_inverse * p_ms_inverse * p_mp_inverse);
+        print("======custom inverse worldToLocalMatrix:\n" + mp_inverse * ms_inverse * mr_inverse * p_mp_inverse * p_ms_inverse * p_mr_inverse);
     }
 
     // Update is called once per frame
