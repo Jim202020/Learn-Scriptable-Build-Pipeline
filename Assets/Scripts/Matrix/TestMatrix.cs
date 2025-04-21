@@ -30,11 +30,15 @@ public class TestMatrix : MonoBehaviour
         var go = new GameObject("go2");
         var transform = go.transform;
         transform.parent = go1.transform;
-        transform.localRotation = Quaternion.Euler(20, 20, 20);
+        transform.localRotation = Quaternion.Euler(20, 30, 40);
         transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         transform.localPosition = new Vector3(10, 20, 30);
         print("localScale: " + transform.localScale);
         print("lossyScale: " + transform.lossyScale);
+
+        var scale = transform.lossyScale;
+        var rotation = transform.rotation;
+        var position = transform.position;
 
         var p_mr = Matrix4x4.Rotate(go1.transform.localRotation);
         var p_ms = Matrix4x4.Scale(go1.transform.localScale);
@@ -54,10 +58,21 @@ public class TestMatrix : MonoBehaviour
 
         print("localToWorldMatrix: \n" + transform.localToWorldMatrix);
         print("======custom localToWorldMatrix:\n" + p_mp * p_mr * p_ms * mp * mr * ms);
+        print("custom localToWorldMatrix2: \n" + Matrix4x4.TRS(position,rotation,scale));
 
         print("worldToLocalMatrix: \n" + transform.worldToLocalMatrix);
         print("======inverse worldToLocalMatrix:\n" + (p_mp * p_mr * p_ms * mp * mr * ms).inverse);
         print("======custom inverse worldToLocalMatrix:\n" + ms_inverse * mr_inverse * mp_inverse * p_ms_inverse * p_mr_inverse * p_mp_inverse);
+        print("custom worldToLocalMatrix2: \n" + Matrix4x4.Translate(position).inverse * Matrix4x4.Rotate(rotation).inverse * Matrix4x4.Scale(scale).inverse);
+
+
+        print("mr: \n" + mr);
+        var xM = Matrix4x4.Rotate(Quaternion.Euler(20f,0f,0f));
+        var yM = Matrix4x4.Rotate(Quaternion.Euler(0,30f,0f));
+        var zM = Matrix4x4.Rotate(Quaternion.Euler(0,0f,40f));
+        print("custom mr1:\n" + zM * xM * yM);
+        print("custom mr2:\n" + yM * xM * zM);
+         
     }
 
     // Update is called once per frame
