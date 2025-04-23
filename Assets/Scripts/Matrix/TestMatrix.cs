@@ -12,6 +12,7 @@ public class TestMatrix : MonoBehaviour
 
         var go1 = AddGo1();
         AddGo2(go1);
+        AddGo3();
     }
 
     GameObject AddGo1()
@@ -73,6 +74,22 @@ public class TestMatrix : MonoBehaviour
         print("custom mr1:\n" + zM * xM * yM);
         print("custom mr2:\n" + yM * xM * zM);
          
+    }
+
+    void AddGo3()
+    {
+        var go5 = new GameObject("go5");
+        var go = new GameObject("go3");
+        go.transform.parent = go5.transform;
+        go5.transform.localRotation = Quaternion.Euler(30f,40f,50f);
+        var go4 = new GameObject("go4");
+        go4.transform.position = new Vector3(10,20,30);
+        //go.transform.LookAt(go4.transform);
+        var forward = (go4.transform.position - go.transform.position).normalized;
+        var rotation = Quaternion.LookRotation(forward);
+        go.transform.rotation = rotation;
+
+        print("lookat:" + go.transform.rotation.eulerAngles);
     }
 
     // Update is called once per frame
